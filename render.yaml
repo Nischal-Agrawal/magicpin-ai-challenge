@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: magicpin-vera-bot
+    env: python
+    region: oregon
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn bot:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /v1/healthz
+    autoDeploy: false
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: TEAM_NAME
+        value: Team Antigravity
+      - key: TEAM_MEMBERS
+        value: Autonomous Engineer
+      - key: MODEL_NAME
+        value: ewsa-grounded-composer
+      - key: APPROACH_DESC
+        value: Evidence-Weighted Signal Arbitration (EWSA) with deterministic grounding validator
+      - key: CONTACT_EMAIL
+        value: team-antigravity@example.com
+      - key: BOT_VERSION
+        value: 1.0.0
+      - key: OPENROUTER_API_KEY
+        sync: false
